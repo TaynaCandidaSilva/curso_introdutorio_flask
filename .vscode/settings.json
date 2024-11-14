@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        "**/curso-introdutorio-flask": true,
+        "**/__pycache__": true
+    },
+    "cSpell.words": [
+        "sqlalchemy"
+    ]
+}
