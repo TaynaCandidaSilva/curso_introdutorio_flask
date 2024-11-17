@@ -76,6 +76,16 @@ def update_product(product_id):
     return jsonify({"message": "Product updated sucessfully"}), 200
 
 
+@app.route("/api/products", methods=["GET"])
+def get_products():
+    products = Product.query.all()
+    products_list = []
+    for product in products:
+        products_data = {"id": product.id, "name": product.name, "price": product.price}
+        products_list.append(products_data)
+    return jsonify(products_list)
+
+
 @app.route("/")
 def hello_world():
     return "Hello, World!"
