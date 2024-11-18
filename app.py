@@ -1,12 +1,21 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from repository.database import db
+from flask_cors import CORS
+from flask_login import UserMixin
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///ecommerce.db"  # Configuracao do B.D
 
 # Iniciando o Banco de Dados
 db = SQLAlchemy(app)
+CORS(app)
+
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), nullable=False, unique=True)
+    password = db.Column(db.String(120), nullable=True)
 
 
 class Product(db.Model):
